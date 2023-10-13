@@ -21,8 +21,8 @@ func _ready():
 
 var enemies_detonated = 0  # Contador para los enemigos eliminados por la bomba
 var difficulty_level = 1  # Empieza en 1 y aumenta con cada jefe derrotado
-var next_boss_score = 10 
-const defaul_score_next_level = 10
+var next_boss_score = 50 
+const defaul_score_next_level = 50
 
 
 
