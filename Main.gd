@@ -26,17 +26,26 @@ const defaul_score_next_level = 10
 
 
 
-func game_over():
+func stop_all_timers():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	$HUD.show_game_over()
-	$Music.stop()
-	$DeathSound.play()
 	$BombTimer.stop()
 	$BulletTimer.stop()
+
+func free_specific_children():
 	for child in get_children():
 		if (child is RigidBody2D or child is CanvasLayer) and child.has_method("is_boss") and child.is_boss():
 			child.queue_free()
+
+func game_over():
+	stop_all_timers()
+	$HUD.show_game_over()
+	$Music.stop()
+	$DeathSound.play()
+	free_specific_children()
+	reset_game_state()
+
+func reset_game_state():
 	boss_spawned = false
 	boss_instance = null
 
@@ -53,7 +62,6 @@ func new_game():
 	$HUD.show_message("Preparate!")
 	$Music.play()
 	$BossMusic.stop()
-	$BombTimer.start()
 	$BombTimer.start()
 
 
@@ -222,5 +230,6 @@ func on_boss_defeated():
 	$BossMusic.stop()
 	$MobTimer.start()
 	difficulty_level += 1
-	next_boss_score = ((score + 50* difficulty_level) / 50 * difficulty_level) * 50 * difficulty_level
+	next_boss_score = score + 50 * difficulty_level
+
 	
