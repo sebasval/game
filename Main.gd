@@ -39,8 +39,10 @@ func free_specific_children():
 
 func game_over():
 	stop_all_timers()
+	$HUD.hideLableElements()
 	$HUD.show_game_over()
 	$Music.stop()
+	$BossMusic.stop()
 	$DeathSound.play()
 	free_specific_children()
 	reset_game_state()
@@ -59,7 +61,7 @@ func new_game():
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
-	$HUD.show_message("Preparate!")
+	$HUD.show_message("Get ready!")
 	$Music.play()
 	$BossMusic.stop()
 	$BombTimer.start()

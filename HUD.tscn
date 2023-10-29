@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -11,10 +11,40 @@ font_data = ExtResource( 2 )
 size = 40
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Theme" id=4]
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
 [node name="ScoreLabel" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -75.0
@@ -25,6 +55,7 @@ custom_fonts/font = SubResource( 1 )
 text = "0"
 
 [node name="Message" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -39,6 +70,7 @@ the
 enemies"
 
 [node name="ScoreTitle" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -55,9 +87,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -129.0
-margin_top = -65.0
-margin_right = 129.0
+margin_left = -130.0
+margin_top = -95.0
+margin_right = 128.0
+margin_bottom = -30.0
+theme = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Comenzar"
 
 [node name="MessageTimer" type="Timer" parent="."]
